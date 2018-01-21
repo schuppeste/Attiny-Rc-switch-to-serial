@@ -18,13 +18,6 @@ RCSwitch mySwitch = RCSwitch();
 #endif
 #define FULL_BIT_TICKS      ( (CYCLES_PER_BIT) / (DIVISOR) )
 
-// Old timer values
-//#ifdef ARDUINO
-//volatile static uint8_t oldTCCR0A;
-//volatile static uint8_t oldTCCR0B;
-//volatile static uint8_t oldTCNT0;
-//#endif
-
 // USISerial send state variable and accessors
 enum USISERIAL_SEND_STATE { AVAILABLE, FIRST, SECOND };
 static volatile enum USISERIAL_SEND_STATE usiserial_send_state = AVAILABLE;
@@ -90,8 +83,7 @@ void usiserial_send_byte(uint8_t data)
 
 ISR (TIM1_COMPA_vect)
 {
-  // Start bit (low)
-  // followed by first 7 bits of serial data
+ //Shift Usi Bitclock to next Clock
   USICR  |= (1 << USICLK);
 
 }// USI overflow interrupt indicates we have sent a buffer
