@@ -1,3 +1,6 @@
+//Original USI Example from https://github.com/MarkOsborne/becomingmaker/blob/master/USISerialSend/USISerialSend.ino
+//Edited for Timer1
+
 #include <RCSwitch.h>
 RCSwitch mySwitch = RCSwitch();
 // Set your baud rate and number of stop bits here
