@@ -63,15 +63,15 @@ void usiserial_send_byte(uint8_t data)
   usiserial_send_set_state(FIRST);
   usiserial_set_tx_data(reverse_byte(data));
   TCCR1 = 0;
-  TCCR1 |= (1 << CTC1);                    // CTC mode
-  TCCR1 |= (0 << CS10);                // Set prescaler to clk or clk /8
-  TCCR1 |= (0 << CS11);
-  TCCR1 |= (1 << CS12);
-  TCCR1 |= (0 << CS13);
+  TCCR1 |= (1 << CTC1);   // CTC mode
+  TCCR1 |= (0 << CS10);   // Set prescaler to clk or clk /8   
+  TCCR1 |= (0 << CS11);   // Set prescaler to clk or clk /8
+  TCCR1 |= (1 << CS12);   // Set prescaler to clk or clk /8
+  TCCR1 |= (0 << CS13);   // Set prescaler to clk or clk /8
   GTCCR |= (1 << PSR1);
   TIMSK |= (1 << OCIE1A);
-  OCR1C = FULL_BIT_TICKS;                // Trigger every full bit width
-  TCNT1 = 0;                    // Count up from 0
+  OCR1C = FULL_BIT_TICKS; // Trigger every full bit width
+  TCNT1 = 0;              // Count up from 0
 
   // Configure USI to send high start bit and 7 bits of data
   USIDR = 0x00 |                            // Start bit (low)
